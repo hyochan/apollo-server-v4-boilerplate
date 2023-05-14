@@ -1,13 +1,17 @@
 import type {User} from '@prisma/client';
 
-import type {Resolvers} from '../../generated/graphql';
+import type {QueryResolvers, Resolvers} from '../../generated/graphql.js';
+import {createPrismaSelect} from '../../utils/select.js';
 
-const resolver: Resolvers['Query'] = {
-  me: async (_, args, {getUser}): Promise<User> => {
-    const auth = await getUser();
+const me: QueryResolvers['me'] = async (_, __, {userId, prisma}, info) => {
+  const select = createPrismaSelect(info);
 
-    return auth;
-  },
+  return prisma.user.findUnique({
+    select,
+    where: {id: userId},
+  }) as unknown as User;
 };
 
-export default resolver;
+export default <Resolvers['Query']>{
+  me,
+};
