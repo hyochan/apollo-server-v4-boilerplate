@@ -1,10 +1,10 @@
-import {i18n} from 'i18next';
+import 'express';
 
-declare global {
-  namespace Express {
-    interface Request extends i18n {
-      appSecret: string;
-      appSecretEtc: string;
-    }
+import type {i18n} from 'i18next';
+
+declare module 'express' {
+  export interface Request extends i18n {
+    appSecret: string;
+    appSecretEtc: string;
   }
 }
