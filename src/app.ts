@@ -6,7 +6,7 @@ import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 import i18next from 'i18next';
 import type {FsBackendOptions} from 'i18next-fs-backend';
 import FsBackend from 'i18next-fs-backend';
-import i18Middleware from 'i18next-http-middleware';
+import * as i18Middleware from 'i18next-http-middleware';
 import path from 'path';
 
 import RouteApi from './apis/root.js';
@@ -37,6 +37,7 @@ export const createExpressApp = (): express.Application => {
   const filePath = path.join(path.resolve(), './files');
 
   app.use(express.static(filePath));
+  // @ts-ignore
   app.use(i18Middleware.handle(i18next));
   app.use(express.urlencoded({extended: true}));
   app.use(express.json());
