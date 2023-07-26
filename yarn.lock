@@ -6042,12 +6042,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express-rate-limit@npm:^6.8.0":
-  version: 6.8.0
-  resolution: "express-rate-limit@npm:6.8.0"
+"express-rate-limit@npm:6.7.0":
+  version: 6.7.0
+  resolution: "express-rate-limit@npm:6.7.0"
   peerDependencies:
     express: ^4 || ^5
-  checksum: 57b92d9bbe90a98fe9326b8f3d81081714e6ecef80c082ab354aba4ed7e52472618e97800f3e449f3db5ba4ac79f5fa2034e4a3ce921bdb7ee3fc0cf32e34a1d
+  checksum: 7bd3f298b202cdb11c3d7c2dcff9be12c6885be5e64fb112f6c79103ba93a8e5d899ce15a5a3ce48f82190ab3515bed403e067dc3e42fc2832558cbe2620f955
   languageName: node
   linkType: hard
 
@@ -10052,7 +10052,7 @@ __metadata:
     ejs: ^3.1.9
     eslint: ^8.45.0
     eslint-plugin-i18n-json: ^4.0.0
-    express-rate-limit: ^6.8.0
+    express-rate-limit: 6.7.0
     generate-password: ^1.7.0
     graphql: ^16.7.1
     graphql-import: ^1.0.2
