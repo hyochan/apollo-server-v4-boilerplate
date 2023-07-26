@@ -26,6 +26,30 @@ type User {
   todos: [Todo]
 }
 
+type UserConnection {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
+  """
+  edges: [UserEdge]
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
+  """
+  pageInfo: PageInfo!
+}
+
+type UserEdge {
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Cursor
+  """
+  cursor: String!
+
+  """
+  https://facebook.github.io/relay/graphql/connections.htm#sec-Node
+  """
+  node: User
+}
+
 """
 PageInfo cursor, as defined in https://facebook.github.io/relay/graphql/connections.htm#sec-undefined.PageInfo
 """

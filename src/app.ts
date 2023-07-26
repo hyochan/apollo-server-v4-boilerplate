@@ -2,14 +2,23 @@ import type {CorsOptions, CorsOptionsDelegate} from 'cors';
 import cors from 'cors';
 import ejs from 'ejs';
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
-import i18next from 'i18next';
+import * as i18next from 'i18next';
 import type {FsBackendOptions} from 'i18next-fs-backend';
 import FsBackend from 'i18next-fs-backend';
 import * as i18Middleware from 'i18next-http-middleware';
 import path from 'path';
 
+import RouteAddon from './apis/addon.js';
 import RouteApi from './apis/root.js';
+
+const apiLimiter = rateLimit({
+  windowMs: 5000,
+  max: 1,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 i18next
   //@ts-ignore
@@ -72,7 +81,7 @@ export const createExpressApp = (): express.Application => {
   app.set('views', path.join(path.resolve(), './html'));
   app.engine('html', ejs.renderFile);
   app.set('view engine', 'html');
-
+  app.use('/addon', apiLimiter, RouteAddon);
   app.use('', RouteApi);
 
   return app;

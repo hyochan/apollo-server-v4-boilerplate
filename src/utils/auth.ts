@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import type {Request} from 'express';
-import {verify} from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const SALT_ROUND = 10;
 
@@ -22,17 +22,21 @@ interface Token {
  * Extract userId from request.
  * @returns user id if available. null otherwise.
  */
-export function getUserId(authorization: string): string | null {
+export function getUserId(authorization?: string): string | null {
   if (!authorization) {
     return null;
   }
 
   const token = authorization.replace('Bearer ', '');
-  const verifiedToken = verify(token, APP_SECRET) as Token;
 
-  return verifiedToken && verifiedToken.userId;
+  try {
+    const verifiedToken = jwt.verify(token, JWT_SECRET) as Token;
+
+    return verifiedToken && verifiedToken.userId;
+  } catch (err) {
+    return null;
+  }
 }
-
 // eslint-disable-next-line
 export const getToken = (req: Request): string | undefined => {
   const authHeader = req.get('Authorization');
@@ -42,7 +46,7 @@ export const getToken = (req: Request): string | undefined => {
   }
 
   const token = authHeader.replace('Bearer ', '');
-  const verifiedToken = verify(token, APP_SECRET) as Token;
+  const verifiedToken = jwt.verify(token, APP_SECRET) as Token;
 
   return verifiedToken && verifiedToken.userId;
 };

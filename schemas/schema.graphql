@@ -4,6 +4,25 @@
 # import 'input.graphql'
 
 type Query {
+  """
+  User 페이지네이션 쿼리
+  """
+  users(
+    """
+    Returns the elements in the list that come after the specified cursor
+    """
+    after: String
+
+    """
+    Returns the first n elements from the list.
+    """
+    first: Int!
+
+    """
+    검색 텍스트
+    """
+    searchText: String
+  ): UserConnection
   user(id: ID!): User
   me: User
   todo(id: ID!): Todo
