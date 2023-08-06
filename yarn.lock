@@ -6798,6 +6798,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql-iso-date@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "graphql-iso-date@npm:3.6.1"
+  peerDependencies:
+    graphql: ^0.5.0 || ^0.6.0 || ^0.7.0 || ^0.8.0-b || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0
+  checksum: 829d1a26976c24525c098f29b58930bd992c5afb1db9006a0e7ec2b28299b0a911972257f4bcfff0709dc79202db359ab20bafc025db2651d54edf852b9829c6
+  languageName: node
+  linkType: hard
+
 "graphql-middleware@npm:^6.1.35":
   version: 6.1.35
   resolution: "graphql-middleware@npm:6.1.35"
@@ -9258,6 +9267,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nexus@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "nexus@npm:1.3.0"
+  dependencies:
+    iterall: ^1.3.0
+    tslib: ^2.0.3
+  peerDependencies:
+    graphql: 15.x || 16.x
+  checksum: 811a4ef69d811d77dee2d368dde487a8e1494fc7878ce2dd72f0863eb6030f8e52984e0fbfa12ae970377f2e9b7402a48cde804a16fdd754b4c83e34b92f91de
+  languageName: node
+  linkType: hard
+
 "no-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "no-case@npm:3.0.4"
@@ -10074,6 +10095,7 @@ __metadata:
     generate-password: ^1.7.0
     graphql: ^16.7.1
     graphql-import: ^1.0.2
+    graphql-iso-date: ^3.6.1
     graphql-middleware: ^6.1.35
     graphql-request: ^6.1.0
     graphql-shield: ^7.6.5
@@ -10089,6 +10111,7 @@ __metadata:
     jsonwebtoken: ^9.0.1
     multer: ^1.4.4
     nanoid: ^4.0.2
+    nexus: ^1.3.0
     nodemon: ^3.0.1
     prettier: ^3.0.0
     prisma: ^5.1.0
