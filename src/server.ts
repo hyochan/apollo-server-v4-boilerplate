@@ -1,22 +1,20 @@
 import {ApolloServer} from '@apollo/server';
 import {expressMiddleware} from '@apollo/server/express4';
 import {ApolloServerPluginDrainHttpServer} from '@apollo/server/plugin/drainHttpServer';
-import {makeExecutableSchema} from '@graphql-tools/schema';
 import SendGridMail from '@sendgrid/mail';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import type express from 'express';
-import {importSchema} from 'graphql-import';
 import {applyMiddleware} from 'graphql-middleware';
 import type {Server} from 'http';
 import {createServer as createHttpServer} from 'http';
 
 import {permissions} from './permissions/index.js';
-import resolvers from './resolvers/index.js';
 import {assert} from './utils/assert.js';
 import {createExpressApp} from './app.js';
 import type {Context} from './context.js';
 import {createContext, startSubscriptionServer} from './context.js';
+import {schema} from './schema.js';
 
 const {NODE_ENV, SENDGRID_API_KEY = 'any', PORT = 5050} = process.env;
 
@@ -24,9 +22,7 @@ assert(SENDGRID_API_KEY, 'Missing SENDGRID_API_KEY environment variable.');
 SendGridMail.setApiKey(SENDGRID_API_KEY);
 
 const expressApp = createExpressApp();
-const typeDefs = importSchema('schemas/schema.graphql');
 
-export const schema = makeExecutableSchema({typeDefs, resolvers});
 export const schemaWithMiddleware = applyMiddleware(schema, permissions);
 
 const createApolloServer = (httpServer: Server): ApolloServer<Context> => {

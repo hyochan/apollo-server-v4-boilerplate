@@ -10,7 +10,7 @@ import type en from '../locales/en.json';
 import {assert} from './utils/assert.js';
 import {getUserId} from './utils/auth.js';
 import {i18n} from './app.js';
-import {schema} from './server.js';
+import {schema} from './schema.js';
 
 const {JWT_SECRET, JWT_SECRET_ETC} = process.env;
 

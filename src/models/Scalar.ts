@@ -8,6 +8,7 @@ const {asNexusMethod, enumType} = nexus;
 export const AuthType = enumType({
   name: 'AuthType',
   members: ['Email', 'Facebook', 'Google', 'Apple'],
+  asNexusMethod: 'auth',
 });
 
 export const Gender = enumType({

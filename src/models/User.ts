@@ -1,5 +1,19 @@
 import {list, objectType} from 'nexus';
 
+export const Settings = objectType({
+  name: 'Settings',
+  definition(t) {
+    t.id('id');
+    t.string('socialId');
+
+    t.field('authType', {
+      type: 'AuthType',
+    });
+
+    t.string('refreshToken');
+  },
+});
+
 export const User = objectType({
   name: 'User',
   definition(t) {
@@ -18,6 +32,6 @@ export const User = objectType({
     t.date('deletedAt');
 
     // t.field('settings', {type: 'Settings'});
-    // t.list.field('todos', {type: 'Todo'});
+    // t.field('todos', {type: list('Todo')});
   },
 });

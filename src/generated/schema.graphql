@@ -2,6 +2,11 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String
+  user: User
+}
+
 enum AuthType {
   Apple
   Email
@@ -21,8 +26,40 @@ enum Gender {
   male
 }
 
+type Mutation {
+  createTodo(description: String, title: String!): Todo
+  deleteTodo(id: Int!): Todo
+  signIn(email: String!, password: String!): AuthPayload
+  signUp(user: UserCreateInput!): AuthPayload
+  updateProfile(user: UserUpdateInput!): User
+}
+
 type Query {
-  ok: Boolean!
+  me: User
+  todo(id: ID!): Todo
+  todos: [Todo]
+}
+
+type Settings {
+  authType: AuthType
+  id: ID
+  refreshToken: String
+  socialId: String
+}
+
+type Subscription {
+  userSignedIn(userId: String!): User
+  userUpdated(userId: String!): User
+}
+
+type Todo {
+  completed: Boolean
+  createdAt: DateTime
+  deletedAt: DateTime
+  description: String
+  id: Int
+  title: String
+  updatedAt: DateTime
 }
 
 """The `Upload` scalar type represents a file upload."""
@@ -41,4 +78,24 @@ type User {
   photoURL: String
   thumbURL: String
   updatedAt: DateTime
+}
+
+input UserCreateInput {
+  birthday: DateTime
+  displayName: String
+  email: String!
+  gender: Gender
+  name: String
+  password: String!
+  phone: String
+  statusMessage: String
+}
+
+input UserUpdateInput {
+  birthday: DateTime
+  displayName: String
+  gender: Gender
+  name: String
+  phone: String
+  statusMessage: String
 }
