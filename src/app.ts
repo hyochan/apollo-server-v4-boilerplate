@@ -4,7 +4,8 @@ import ejs from 'ejs';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
-import * as i18next from 'i18next';
+// @ts-ignore => Need this to prevent throwing when testing.
+import i18next from 'i18next';
 import type {FsBackendOptions} from 'i18next-fs-backend';
 import FsBackend from 'i18next-fs-backend';
 import * as i18Middleware from 'i18next-http-middleware';
